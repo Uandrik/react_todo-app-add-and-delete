@@ -47,7 +47,7 @@ export const App: React.FC = () => {
 
   function addTodo({ title, userId, completed }: Todo) {
     const temp = {
-      id: 0,
+      id: Date.now(),
       userId,
       title,
       completed,
@@ -62,11 +62,12 @@ export const App: React.FC = () => {
         setTodos(currentTodos => [...currentTodos, newTodo]);
         setTempTodo(null);
         setCurrentTitle('');
-        setCheckResponce(false);
       })
       .catch(() => {
         setError(Errors.Adding);
         setTempTodo(null);
+      })
+      .finally(() => {
         setCheckResponce(false);
       });
   }
